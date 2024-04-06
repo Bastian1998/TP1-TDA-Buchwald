@@ -73,6 +73,9 @@ def graficar(tiempo):
         elemento_x.append(elemento[0])
         elemento_y.append(elemento[1])    
     ax.scatter(x = elemento_x, y = elemento_y)
+    plt.ylabel('Tiempo de ejecucion')
+    plt.xlabel('Input de datos(cantidad batallas)')
+    plt.title('Gráfico cantidad batallas vs tiempo')
     # Guardar el gráfico en formato png
     plt.savefig('diagrama-dispersion.png')
     # Mostrar el gráfico
@@ -93,7 +96,7 @@ if __name__ == "__main__":
         print("Ejemplo: python tp.py graficar")
         sys.exit(1)
     elif(sys.argv[1] == "graficar"):
-        archivos = ["10","50","100","1000","5000","10000","50000","100000"]
+        archivos = ["10","20","30","40","50","60","70","80","90","100","1000","2000","3000","4000","5000","10000","20000","30000","40000","50000","60000","70000","80000","90000","100000"]
         tiempos = calcular_tiempos(archivos)
         graficar(tiempos)
     elif (sys.argv[2] in ["cociente","peso","tiempo"]):
