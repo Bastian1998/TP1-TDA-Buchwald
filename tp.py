@@ -2,6 +2,7 @@ import timeit
 import matplotlib.pyplot as plt
 from ordenadoPorCociente import merge_sort_cociente
 from ordenadoPorPeso import merge_sort_peso
+from ordenadoPorDuracion import merge_sort_duracion
 
 def calculadora_impacto(batallas, algoritmo):
     batallas_ordenadas = []
@@ -9,6 +10,8 @@ def calculadora_impacto(batallas, algoritmo):
         batallas_ordenadas = merge_sort_cociente(batallas)
     elif(algoritmo == "peso"):
         batallas_ordenadas = merge_sort_peso(batallas)
+    elif(algoritmo == "tiempo"):
+        batallas_ordenadas = merge_sort_duracion(batallas)
     else:
         batallas_ordenadas = merge_sort_cociente(batallas)
     suma = 0
