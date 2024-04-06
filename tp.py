@@ -1,32 +1,16 @@
 import timeit
 import matplotlib.pyplot as plt
+from ordenadoPorCociente import merge_sort_cociente
+from ordenadoPorPeso import merge_sort_peso
 
-def merge_sort(lista):
-    if len(lista) < 2:
-      return lista
+def calculadora_impacto(batallas, algoritmo):
+    batallas_ordenadas = []
+    if(algoritmo == "cociente"):
+        batallas_ordenadas = merge_sort_cociente(batallas)
+    elif(algoritmo == "peso"):
+        batallas_ordenadas = merge_sort_peso(batallas)
     else:
-        middle = len(lista) // 2
-        left = merge_sort(lista[:middle])
-        right = merge_sort(lista[middle:])
-        return merge(left, right)
-def merge(lista1, lista2):
-    i, j = 0, 0
-    result = []
-    while(i < len(lista1) and j < len(lista2)):
-        if ((lista1[i][0]/lista1[i][1]) < lista2[j][0]/lista2[j][1]):
-            result.append(lista1[i])
-            i += 1
-        else:
-            result.append(lista2[j])
-            j += 1
-    result += lista1[i:]
-    result += lista2[j:]
-    return result
-
-##Funciones Auxiliares
-
-def calculadora_felicidad(batallas):
-    batallas_ordenadas = merge_sort(batallas)
+        batallas_ordenadas = merge_sort_cociente(batallas)
     suma = 0
     tiempo = 0
     for batalla in batallas_ordenadas:
@@ -50,6 +34,7 @@ def valores_optimos(ruta, suma):
         coef = data[ruta]
         print("Algoritmo para ",batallas, "batallas:")
         print("El valor óptimo para", ruta, "es ", coef)
+        print("El resultado del algorithmo es ", suma)
         print("El resultado es el óptimo" if suma == coef else "El resultado no es óptimo")
     else:
         print("No se encontró el archivo en la lista.")
@@ -70,7 +55,7 @@ def calcular_tiempos(archivos):
     tiempos = []
     for elemento in archivos:
         lista = carga_datos(elemento + ".txt")
-        tiempo = timeit.timeit(lambda: calculadora_felicidad(lista), number=1)
+        tiempo = timeit.timeit(lambda: calculadora_impacto(lista, "cociente"), number=1)
         tiempos.append((elemento,tiempo))
     return tiempos
 
@@ -91,22 +76,27 @@ def graficar(tiempo):
     plt.show()
 
 
-def main(batallas):
+def main(batallas, algoritmo):
     ruta = batallas + ".txt"
     data = carga_datos(ruta)
-    suma = calculadora_felicidad(data)
+    suma = calculadora_impacto(data, algoritmo)
     valores_optimos(ruta, suma)
 
 if __name__ == "__main__":
     import sys
     if len(sys.argv) < 2:
         print("Batallas disponibles: 10, 50, 100, 1000, 5000, 10000, 100000")
-        print("Ejemplo: python tp.py 100")
+        print("Ejemplo: python tp.py 100 cociente/ peso/ tiempo")
         print("Ejemplo: python tp.py graficar")
         sys.exit(1)
     elif(sys.argv[1] == "graficar"):
         archivos = ["10","50","100","1000","5000","10000","50000","100000"]
         tiempos = calcular_tiempos(archivos)
         graficar(tiempos)
-    batallas = sys.argv[1]
-    main(batallas)
+    elif (sys.argv[2] in ["cociente","peso","tiempo"]):
+        batallas = sys.argv[1]
+        algoritmo = sys.argv[2]
+        main(batallas, algoritmo)
+    else:
+        batallas = sys.argv[1]
+        main(batallas, "cociente")
