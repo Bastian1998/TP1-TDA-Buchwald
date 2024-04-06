@@ -40,7 +40,8 @@ def valores_optimos(ruta, suma):
         print("El resultado del algorithmo es ", suma)
         print("El resultado es el óptimo" if suma == coef else "El resultado no es óptimo")
     else:
-        print("No se encontró el archivo en la lista.")
+        print("No se encontró el archivo en la lista otorgada por la cátedra.")
+        print("El resultado del algorithmo para este conjunto de batallas es : ", suma)
 
 def carga_datos(ruta):
     archivo = open("resultados/"+ruta,'r')
