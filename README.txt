@@ -13,4 +13,5 @@ usando todas los sets batallas y el resultado esperado que nos ofrece la cátedr
 
 -Nota: Podes ejecutar el algoritmo para todas las cantidad de batallas ofrecidas por la cátedra en este caso el algoritmo
 te informará si el resultado era el esperado o no, también estan cargados otros sets de batallas creados por nosotros, para este caso solo 
-te devolverá el coeficiente de impacto para ese set de batallas específico
+te devolverá el coeficiente de impacto para ese set de batallas específico.
+Adicionalmente se agregan los archivos .py de los algoritmos no optimos mencionados en el informe.
