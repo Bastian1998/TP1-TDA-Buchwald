@@ -14,6 +14,8 @@ def calculadora_impacto(batallas, algoritmo):
         batallas_ordenadas = merge_sort_tiempo(batallas)
     else:
         batallas_ordenadas = merge_sort_cociente(batallas)
+
+    print("Batallas ordenadas: ", batallas_ordenadas)
     suma = 0
     tiempo = 0
     for batalla in batallas_ordenadas:
@@ -37,7 +39,7 @@ def valores_optimos(ruta, suma):
         coef = data[ruta]
         print("Algoritmo para ",batallas, "batallas:")
         print("El valor óptimo para", ruta, "es ", coef)
-        print("El resultado del algorithmo es ", suma)
+        print("El resultado de la suma ponderada del algoritmo es ", suma)
         print("El resultado es el óptimo" if suma == coef else "El resultado no es óptimo")
     else:
         print("No se encontró el archivo en la lista otorgada por la cátedra.")
